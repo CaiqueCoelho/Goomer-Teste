@@ -6,4 +6,9 @@
     <string name="price">R$ %s</string>
     <string name="see_reviews">Ver Avaliações</string>
     <string name="make_avaliation">Fazer Avaliação</string>
+    <string name="write_avaliation">Escereva a avaliação</string>
+    <string name="post">Publicar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="one">1</string>
+    <string name="five">5</string>
 </resources>

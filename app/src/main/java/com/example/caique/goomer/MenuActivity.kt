@@ -27,12 +27,12 @@ class MenuActivity : AppCompatActivity() {
 
         idMenu?.let {
             val call = RetrofitInitializer().restaurantsService().listItemsMenu(it)
-            executeCallToGetRestaurants(call)
+            executeCallToGetMenu(call)
         }
 
     }
 
-    private fun executeCallToGetRestaurants(call: Call<List<ApiItemMenu>>) {
+    private fun executeCallToGetMenu(call: Call<List<ApiItemMenu>>) {
         call.enqueue(object : Callback<List<ApiItemMenu>?> {
             override fun onResponse(call: Call<List<ApiItemMenu>?>,
                                     response: Response<List<ApiItemMenu>?>?) {
