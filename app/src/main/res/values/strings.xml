@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Goomer</string>
+    <string name="rating">Avaliação: %s</string>
+</resources>
