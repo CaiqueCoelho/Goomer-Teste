@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Goomer</string>
     <string name="rating">Avaliação: %s</string>
-    <string name="time">Tempo de entrega estimado em: %s</string>
+    <string name="time">Tempo Estimado: %s</string>
     <string name="see_menu">Ver o Menu</string>
+    <string name="price">R$ %s</string>
 </resources>

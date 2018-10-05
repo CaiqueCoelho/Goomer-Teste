@@ -38,14 +38,28 @@
             android:textSize="15sp"
             tools:text="Funciona de segunda à sexta, de 8h às 23h" />
 
-        <TextView
-            android:layout_marginTop="8dp"
-            android:id="@+id/restaurant_rating"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_marginBottom="8dp"
-            tools:text="Avaliação: 4.5" />
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_star_border" />
+
+            <TextView
+                android:id="@+id/restaurant_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:textSize="15sp"
+                tools:text="4.5" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

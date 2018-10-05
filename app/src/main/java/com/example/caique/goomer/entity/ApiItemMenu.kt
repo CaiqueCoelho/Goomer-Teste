@@ -7,5 +7,5 @@ class ApiItemMenu (
     @SerializedName("imagePath") val imagePath: String,
     @SerializedName("name") val name: String,
     @SerializedName("description") val description: String,
-    @SerializedName("price") val price: String
+    @SerializedName("price") val price: Double
     )

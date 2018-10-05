@@ -1,7 +1,6 @@
 package com.example.caique.goomer.mappers
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +34,7 @@ class MenuAdapter(
         val description = holder.itemView.findViewById<TextView>(R.id.menu_description)
         val price = holder.itemView.findViewById<TextView>(R.id.menu_price)
         name.text = myDataset[position].name
-        price.text = myDataset[position].price
+        price.text = context.getString(R.string.price, myDataset[position].price.toString())
         description.text = myDataset[position].description
     }
 

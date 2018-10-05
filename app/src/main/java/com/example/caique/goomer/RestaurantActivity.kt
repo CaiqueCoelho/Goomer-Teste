@@ -32,7 +32,7 @@ class RestaurantActivity : AppCompatActivity() {
 
     private fun setButtonMenu() {
         val intent = Intent(this, MenuActivity::class.java)
-        intent.putExtra(EXTRA_MENU_ID, restaurant.id)
+        intent.putExtra(EXTRA_MENU_ID, restaurant.idKey)
         startActivity(intent)
     }
 }

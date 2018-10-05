@@ -43,8 +43,10 @@ class MenuActivity : AppCompatActivity() {
                 response?.body()?.let {
                     val menuGet = it
                     setItemsMenu(menuGet)
+                    Log.i("Teste", menuGet[0].toString())
                 }
 
+                Log.i("TESTE", response?.body().toString())
                 Log.i("TESTE", "sucesso")
             }
 
