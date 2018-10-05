@@ -1,6 +1,7 @@
 package com.example.caique.goomer.entity
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class ApiRestaurant(
     @SerializedName("self") val self: String,
@@ -15,4 +16,4 @@ class ApiRestaurant(
     @SerializedName("about") val about: String,
     @SerializedName("hours") val hours: String,
     @SerializedName("_v") val _v: String
-    )
+    ) : Serializable
