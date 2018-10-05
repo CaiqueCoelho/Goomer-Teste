@@ -1,4 +1,4 @@
-package com.example.caique.goomer.mappers
+package com.example.caique.goomer
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.caique.goomer.R
 import com.example.caique.goomer.entity.ApiItemMenu
 
 class MenuAdapter(

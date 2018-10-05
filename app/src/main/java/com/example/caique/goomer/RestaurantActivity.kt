@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_restaurant.*
 class RestaurantActivity : AppCompatActivity() {
 
     private val EXTRA_RESTAURANT = "EXTRA_RESTAURANT"
+    private val RESTAURANT_ID = "RESTAURANT_ID"
     private val EXTRA_MENU_ID = "EXTRA_MENU_ID"
 
     private lateinit var restaurant: ApiRestaurant
@@ -26,6 +27,7 @@ class RestaurantActivity : AppCompatActivity() {
             descriptiont_hour.text = it.hours
             description_description.text = it.about
             description_menu.setOnClickListener { setButtonMenu() }
+            description_reviews.setOnClickListener { setButtonReviews() }
         }
 
     }
@@ -33,6 +35,12 @@ class RestaurantActivity : AppCompatActivity() {
     private fun setButtonMenu() {
         val intent = Intent(this, MenuActivity::class.java)
         intent.putExtra(EXTRA_MENU_ID, restaurant.idKey)
+        startActivity(intent)
+    }
+
+    private fun setButtonReviews() {
+        val intent = Intent(this, ReviewsActivity::class.java)
+        intent.putExtra(RESTAURANT_ID, restaurant.idKey)
         startActivity(intent)
     }
 }

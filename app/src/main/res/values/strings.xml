@@ -4,4 +4,6 @@
     <string name="time">Tempo Estimado: %s</string>
     <string name="see_menu">Ver o Menu</string>
     <string name="price">R$ %s</string>
+    <string name="see_reviews">Ver Avaliações</string>
+    <string name="make_avaliation">Fazer Avaliação</string>
 </resources>

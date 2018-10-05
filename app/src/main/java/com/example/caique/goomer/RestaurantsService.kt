@@ -2,8 +2,10 @@ package com.example.caique.goomer
 
 import com.example.caique.goomer.entity.ApiItemMenu
 import com.example.caique.goomer.entity.ApiRestaurant
+import com.example.caique.goomer.entity.ApiReviews
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -17,4 +19,10 @@ interface RestaurantsService {
 
     @GET("restaurants/{id}/menu")
     fun listItemsMenu(@Path("id") number: String): Call<List<ApiItemMenu>>
+
+    @GET("reviews")
+    fun listReviews(): Call<ApiReviews>
+
+    @PUT("reviews")
+    fun postReview()
 }
