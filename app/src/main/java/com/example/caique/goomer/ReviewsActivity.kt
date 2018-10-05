@@ -174,7 +174,6 @@ class ReviewsActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<String?>?,
                                    t: Throwable?) {
-                Log.i("TESTE", "falha")
                 Log.e("TESTE", t?.message)
             }
         })
