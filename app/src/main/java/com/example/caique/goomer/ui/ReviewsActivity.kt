@@ -1,4 +1,4 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.ui
 
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -7,17 +7,23 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.SeekBar
+import android.widget.Toast
+import com.example.caique.goomer.R
+import com.example.caique.goomer.adapters.ReviewsAdapter
+import com.example.caique.goomer.client.RetrofitInitializer
 import com.example.caique.goomer.entity.ApiItemReview
 import com.example.caique.goomer.entity.ApiReviews
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_reviews.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -30,11 +36,17 @@ class ReviewsActivity : AppCompatActivity() {
     private val RESTAURANT_ID = "RESTAURANT_ID"
     private var idRestaurant = ""
 
-    private var avaliation = 3
+    private var avaliation = 0.0
+    var page = 1
+    var reviewsGet = mutableListOf<ApiItemReview>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reviews)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        title = getString(R.string.avaliations)
 
         idRestaurant = intent.extras.getString(RESTAURANT_ID)
 
@@ -44,8 +56,9 @@ class ReviewsActivity : AppCompatActivity() {
     }
 
     private fun getReviews() {
+        reviews_progress.visibility = View.VISIBLE
         idRestaurant?.let {
-            val call = RetrofitInitializer().restaurantsService().listReviews()
+            val call = RetrofitInitializer().restaurantsService().listReviews(page)
             executeCallToGetReviews(call)
         }
     }
@@ -56,22 +69,34 @@ class ReviewsActivity : AppCompatActivity() {
                                     response: Response<ApiReviews?>?) {
 
                 response?.body()?.let {
-                    val reviewsGet = it.reviews
-                    reviewsGet?.let {
+                    it.reviews?.run {
+                        forEach { reviewsGet.add(it) }
+                    }
 
-                        val reviewsRestaurant = mutableListOf<ApiItemReview>()
+                    if(it.self.next != null){
+                        page++
+                        getReviews()
+                    }
+                    else {
+                        reviewsGet?.let {
 
-                        for (review in reviewsGet) {
-                            if (review.restaurant?.equals(idRestaurant) == true) {
-                                reviewsRestaurant.add(review)
+                            val reviewsRestaurant = mutableListOf<ApiItemReview>()
+                            for (review in reviewsGet) {
+                                if (review.restaurant?.equals(idRestaurant) == true) {
+                                    reviewsRestaurant.add(review)
+                                }
                             }
-                        }
 
-                        if (reviewsRestaurant.isNotEmpty()) {
-                            setItemsReview(reviewsGet)
-                        }
+                            if (reviewsRestaurant.isNotEmpty()) {
+                                setItemsReview(reviewsRestaurant)
+                            }else{
+                                review_nothing.visibility = View.VISIBLE
+                            }
+                            reviews_progress.visibility = View.GONE
+                            reviews_recyclerview.visibility = View.VISIBLE
 
-                        Log.i("Teste", reviewsGet[0].toString())
+                            Log.i("Teste", reviewsGet[0].toString())
+                        }
                     }
                 }
 
@@ -92,14 +117,9 @@ class ReviewsActivity : AppCompatActivity() {
         viewAdapter = ReviewsAdapter(reviews, this)
 
         recyclerView = findViewById<RecyclerView>(R.id.reviews_recyclerview).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            //setHasFixedSize(true)
 
-            // use a linear layout manager
             layoutManager = viewManager
 
-            // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
         }
@@ -110,23 +130,14 @@ class ReviewsActivity : AppCompatActivity() {
         val viewReview = LayoutInflater.from(this).inflate(R.layout.form_review, window.decorView as ViewGroup, false)
 
         val editTextReview = viewReview.findViewById<EditText>(R.id.review_edittext)
-        val avaliationReview = viewReview.findViewById<SeekBar>(R.id.review_seekBar)
 
+        val avaliationReview = viewReview.findViewById<RatingBar>(R.id.review_ratingbar)
 
-        avaliationReview.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        avaliationReview.rating = avaliation.toFloat()
 
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                avaliation = if (i != 1) {
-                    i / 2
-                } else {
-                    1
-                }
-            }
+        avaliationReview.onRatingBarChangeListener =
+                RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser -> avaliation = rating.toDouble() }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
-        })
 
         var dialog: AlertDialog
 
@@ -137,6 +148,14 @@ class ReviewsActivity : AppCompatActivity() {
                 ) { _, _ ->
                     if (!editTextReview.text.isEmpty()) {
                         postReview(avaliation.toDouble(), editTextReview.text.toString())
+                        review_nothing.visibility = View.GONE
+                        reviews_recyclerview.visibility = View.GONE
+                        reviewsGet = mutableListOf()
+                        page = 1
+                        getReviews()
+                    }else{
+                        showEditComment()
+                        Toast.makeText(this, "Descrição é obrigatória", Toast.LENGTH_LONG).show()
                     }
                 }
                 .setNegativeButton(R.string.cancel, null)
@@ -160,6 +179,8 @@ class ReviewsActivity : AppCompatActivity() {
 
         executeCallToPostReview(call)
 
+        Toast.makeText(this, "Avaliação Publicada", Toast.LENGTH_LONG).show()
+
     }
 
     private fun executeCallToPostReview(call: Call<String>) {
@@ -177,6 +198,11 @@ class ReviewsActivity : AppCompatActivity() {
                 Log.e("TESTE", t?.message)
             }
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
 }

@@ -1,11 +1,17 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
+import com.example.caique.goomer.R
+import com.example.caique.goomer.adapters.MenuAdapter
+import com.example.caique.goomer.client.RetrofitInitializer
 import com.example.caique.goomer.entity.ApiItemMenu
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_menu.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +27,11 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        title = getString(R.string.menu)
+
         RetrofitInitializer()
 
         val idMenu = intent.extras.getString(EXTRA_MENU_ID)
@@ -45,6 +56,8 @@ class MenuActivity : AppCompatActivity() {
 
                 Log.i("TESTE", response?.body().toString())
                 Log.i("TESTE", "sucesso")
+                menu_progress.visibility = View.GONE
+                menu_recyclerview.visibility = View.VISIBLE
             }
 
             override fun onFailure(call: Call<List<ApiItemMenu>?>?,
@@ -60,16 +73,15 @@ class MenuActivity : AppCompatActivity() {
         viewAdapter = MenuAdapter(menu, this)
 
         recyclerView = findViewById<RecyclerView>(R.id.menu_recyclerview).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            //setHasFixedSize(true)
 
-            // use a linear layout manager
             layoutManager = viewManager
 
-            // specify an viewAdapter (see also next example)
             adapter = viewAdapter
-
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

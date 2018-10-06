@@ -1,4 +1,4 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.caique.goomer.R
 import com.example.caique.goomer.entity.ApiItemMenu
 
 class MenuAdapter(
@@ -16,7 +17,7 @@ class MenuAdapter(
     class MenuViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MenuAdapter.MenuViewHolder {
+                                    viewType: Int): MenuViewHolder {
         // create a new view
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_menu, parent, false)

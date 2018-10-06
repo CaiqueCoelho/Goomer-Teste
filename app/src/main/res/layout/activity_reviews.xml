@@ -5,15 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ReviewsActivity">
+    tools:context=".ui.ReviewsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reviews_recyclerview"
         android:layout_width="match_parent"
         android:layout_weight="1"
+        android:visibility="gone"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/review_nothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nenhuma avaliação foi feita ainda :( Seja o primeiro!"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/reviews_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        />
 
     <Button
         android:id="@+id/reviews_make"
@@ -23,6 +41,7 @@
         android:layout_margin="16dp"
         android:textColor="@android:color/white"
         android:fontFamily="casual"
+        android:layout_gravity="end"
         android:text="@string/make_avaliation"/>
 
 </LinearLayout>

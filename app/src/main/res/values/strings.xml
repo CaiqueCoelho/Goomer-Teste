@@ -10,5 +10,10 @@
     <string name="post">Publicar</string>
     <string name="cancel">Cancelar</string>
     <string name="one">1</string>
+    <string name="avaliations">Avaliações</string>
     <string name="five">5</string>
+    <string name="restaurants">Restaurantes</string>
+    <string name="detail_restaurant">Detalhes Restaurante</string>
+    <string name="menu">Menu</string>
+    <string name="write_your_comment">Escreva seu comentário</string>
 </resources>

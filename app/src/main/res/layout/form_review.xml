@@ -7,46 +7,24 @@
     android:paddingRight="20dp">
 
 
-    <SeekBar
+    <RatingBar
         android:layout_marginTop="16dp"
-        android:id="@+id/review_seekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:max="10"
-        android:progress="0"/>
+        android:id="@+id/review_ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:isIndicator="false"
+        style="@style/Base.Widget.AppCompat.RatingBar"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/one"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/five"
-            android:textColor="@android:color/holo_green_dark"
-            android:textStyle="bold"
-            android:fontFamily="casual"
-            android:textSize="24sp"/>
-
-    </LinearLayout>
 
     <EditText
         android:layout_marginTop="16dp"
         android:id="@+id/review_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/write_your_comment"
         android:inputType="text" />
 
 </LinearLayout>

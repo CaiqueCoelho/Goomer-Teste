@@ -1,8 +1,9 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.caique.goomer.R
 import com.example.caique.goomer.entity.ApiRestaurant
 import kotlinx.android.synthetic.main.activity_restaurant.*
 
@@ -18,6 +19,10 @@ class RestaurantActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        title = getString(R.string.detail_restaurant)
+
         restaurant = intent.extras.getSerializable(EXTRA_RESTAURANT) as ApiRestaurant
 
         restaurant?.let {
@@ -27,7 +32,8 @@ class RestaurantActivity : AppCompatActivity() {
             descriptiont_hour.text = it.hours
             description_description.text = it.about
             description_menu.setOnClickListener { setButtonMenu() }
-            description_reviews.setOnClickListener { setButtonReviews() }
+            description_reviews.setOnClickListener { setButtonReviews()
+            }
         }
 
     }
@@ -42,5 +48,10 @@ class RestaurantActivity : AppCompatActivity() {
         val intent = Intent(this, ReviewsActivity::class.java)
         intent.putExtra(RESTAURANT_ID, restaurant.idKey)
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

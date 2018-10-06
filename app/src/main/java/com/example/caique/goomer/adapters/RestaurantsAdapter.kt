@@ -1,14 +1,15 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.caique.goomer.R
+import com.example.caique.goomer.ui.RestaurantActivity
 import com.example.caique.goomer.entity.ApiRestaurant
 
 
@@ -21,7 +22,7 @@ class RestaurantsAdapter(private val myDataset: List<ApiRestaurant>,
     class RestaurantsViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): RestaurantsAdapter.RestaurantsViewHolder {
+                                    viewType: Int): RestaurantsViewHolder {
         // create a new view
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_restaurant, parent, false)

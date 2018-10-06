@@ -1,4 +1,4 @@
-package com.example.caique.goomer
+package com.example.caique.goomer.client
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
