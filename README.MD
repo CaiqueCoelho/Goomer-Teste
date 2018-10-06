@@ -12,8 +12,8 @@ Dificuldades encontradas:
 
 Apk para download: https://drive.google.com/open?id=1zl3U8OZkDOPRpMFiWXPvoidDyzNn0x_n
 
-![screenshot_2018-10-06-02-42-08-462_com example caique goomer](https://user-images.githubusercontent.com/29831309/46568536-9d46ec80-c914-11e8-8a55-d34e24548835.png)
-<img src="https://user-images.githubusercontent.com/29831309/46568536-9d46ec80-c914-11e8-8a55-d34e24548835.png"  width="120" height="180">
+![screenshot_2018-10-06-02-42-08-462_com example caique goomer]
+<img src="https://user-images.githubusercontent.com/29831309/46568536-9d46ec80-c914-11e8-8a55-d34e24548835.png"  width="240" height="360">
 ![screenshot_2018-10-06-02-42-12-225_com example caique goomer](https://user-images.githubusercontent.com/29831309/46568537-9d46ec80-c914-11e8-8709-393dac3649f1.png)
 ![screenshot_2018-10-06-02-42-19-229_com example caique goomer](https://user-images.githubusercontent.com/29831309/46568538-9d46ec80-c914-11e8-9bbd-6ccb6c5cb48b.png)
 ![screenshot_2018-10-06-02-42-29-156_com example caique goomer](https://user-images.githubusercontent.com/29831309/46568539-9d46ec80-c914-11e8-9560-d65fa9289c3b.png)
