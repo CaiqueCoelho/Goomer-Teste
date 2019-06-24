@@ -1,5 +1,5 @@
 Teste para o processo seletivo da Goomer
-Vaga: Android Jr.
+Vaga: Android
 
 Projeto: Goomer Android em Kotlin
 
